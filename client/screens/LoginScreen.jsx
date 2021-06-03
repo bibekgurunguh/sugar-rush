@@ -6,8 +6,6 @@ import Button from 'ui/Button';
 import Input from 'ui/Input';
 import { Entypo } from '@expo/vector-icons';
 
-import Chip from 'ui/Chip';
-
 const userIcon = () => <Entypo name="user" size={24} color={nice.darkRed} />;
 const passwordIcon = () => (
   <Entypo name="lock-open" size={24} color={nice.darkRed} />
@@ -54,7 +52,6 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('RegisterScreen')}
         />
       </View>
-      <Chip title="test" />
     </View>
   );
 };

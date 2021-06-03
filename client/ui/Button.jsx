@@ -25,7 +25,7 @@ const Button = ({
         style && style,
         shadow && styles.shadow,
         {
-          backgroundColor: !outlined && color,
+          backgroundColor: !outlined ? color : 'rgba(0,0,0,0)',
           borderWidth: outlined && 2,
           borderColor: color,
         },
