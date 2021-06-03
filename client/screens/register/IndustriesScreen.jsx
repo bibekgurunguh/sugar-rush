@@ -1,16 +1,29 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import Chip from 'ui/Chip';
+import { getIndustries } from 'services/apiServices';
 
 const IndustriesScreen = ({ navigation }) => {
-  useEffect(() => {}, []);
+  const [industries, setIndustries] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const fetchedIndustries = await getIndustries();
+      setIndustries(fetchedIndustries);
+    })();
+  }, []);
 
   const handleProceed = () => {
-    navigation.navigate('IndustriesScreen');
+    navigation.navigate('SubmitScreen');
   };
   return (
     <View style={styles.container}>
@@ -24,8 +37,15 @@ const IndustriesScreen = ({ navigation }) => {
         <Text style={styles.h1}>Industries</Text>
       </View>
       <View style={styles.content}>
-        <Chip title="HGV driver" />
-        <Chip title="General hand" selected />
+        <FlatList
+          style={styles.list}
+          numColumns={2}
+          keyExtractor={(item) => item.id}
+          data={industries}
+          renderItem={({ item }) => (
+            <Chip style={styles.chip} title={item.industry} />
+          )}
+        />
       </View>
       <Button
         style={styles.proceedButton}
@@ -60,6 +80,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingBottom: 20,
+  },
+  list: {
+    width: '90%',
+  },
+  chip: {
+    marginHorizontal: 2,
+    marginBottom: 5,
+    flexGrow: 1,
   },
   proceedButton: {
     width: '80%',
