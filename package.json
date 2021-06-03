@@ -1,0 +1,21 @@
+{
+  "name": "sugar-rush",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client; yarn",
+    "start": "cd client; yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibekgurunguh/sugar-rush.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bibekgurunguh/sugar-rush/issues"
+  },
+  "homepage": "https://github.com/bibekgurunguh/sugar-rush#readme"
+}

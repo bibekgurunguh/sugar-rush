@@ -1,0 +1,52 @@
+Arguments: 
+  /home/bg-unix/.nvm/versions/node/v14.13.1/bin/node /home/bg-unix/.nvm/versions/node/v14.13.1/bin/yarn start
+
+PATH: 
+  /home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/bg-unix/.nvm/versions/node/v14.13.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Python38/Scripts/:/mnt/c/Python38/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Java/jdk-16/bin:/mnt/c/Ruby27-x64/bin:/mnt/c/Users/flipo/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/flipo/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/flipo/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/flipo/AppData/Roaming/npm:/mnt/c/Program Files/PostgreSQL/13/bin:/mnt/c/Program Files/PostgreSQL/13/data:/mnt/c/Users/flipo/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Program Files/Java/jdk-16/bin:/snap/bin:/usr/lib/jvm/java-8-openjdk-amd64/bin:C:serslipoAppDataLocalAndroidJavajdk-16/bin:c:/PROGRA~1/Java/JDK-16/bin:c:/Program Files/Java/jdk-16/bin:C:/Program Files/Java/jdk-16/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.13.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /mnt/c/Users/flipo/ReactApps/sugar-rush/package.json: Unexpected token , in JSON at position 263
+      at JSON.parse (<anonymous>)
+      at /home/bg-unix/.nvm/versions/node/v14.13.1/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/bg-unix/.nvm/versions/node/v14.13.1/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/bg-unix/.nvm/versions/node/v14.13.1/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "sugar-rush",
+    "version": "1.0.0",
+    "description": "Sugar Rush Tech Test",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "cd client; yarn start",
+      "install": "cd client; yarn"
+    }
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/bibekgurunguh/sugar-rush.git"
+    },
+    "author": "Bibek",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/bibekgurunguh/sugar-rush/issues"
+    },
+    "homepage": "https://github.com/bibekgurunguh/sugar-rush#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

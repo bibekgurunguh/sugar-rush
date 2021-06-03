@@ -22,7 +22,6 @@ const LoginScreen = ({ navigation }) => {
         let loggedUser = await SecureStore.getItemAsync('user');
         if (loggedUser !== null) {
           setUser(JSON.parse(loggedUser));
-          console.log('logged User from login', JSON.parse(loggedUser));
           navigation.navigate('ProfileScreen');
         }
       } catch (err) {
