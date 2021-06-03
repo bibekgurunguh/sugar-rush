@@ -1,18 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
 import { default as nice } from 'constants/colors';
 import Input from 'ui/Input';
 import Button from 'ui/Button';
+import { UserFormContext } from 'contexts/UserFormContext';
+import { isAnyBlank, isPasswordValid } from 'services/utils';
 
 const passwordIcon = () => (
   <Entypo name="lock-open" size={24} color={nice.darkRed} />
 );
 
 const PasswordsScreen = ({ navigation }) => {
+  const [userForm, setUserForm] = useContext(UserFormContext);
+
+  useEffect(() => {
+    console.log('Form Data: ', userForm);
+  });
+
   const handleProceed = () => {
-    navigation.navigate('WorkExperienceScreen');
+    if (isAnyBlank(userForm.password, userForm.password_confirmation))
+      Alert.alert('Alert', 'Please fill all the necessary fields.');
+    else if (!isPasswordValid(userForm.password))
+      Alert.alert(
+        'Alert',
+        'Your password must be at least 8 characters long and must include at least one uppercase, one lowercase, one number and one symbol.'
+      );
+    else if (userForm.password !== userForm.password_confirmation)
+      Alert.alert('Alert', 'Your passwords must match.');
+    else navigation.navigate('WorkExperienceScreen');
   };
   return (
     <View style={styles.container}>
@@ -30,11 +47,19 @@ const PasswordsScreen = ({ navigation }) => {
           style={styles.input}
           Icon={passwordIcon}
           placeholder="Password"
+          value={userForm.password}
+          onChangeText={(text) => setUserForm({ ...userForm, password: text })}
+          secureTextEntry
         />
         <Input
           style={styles.input}
           Icon={passwordIcon}
           placeholder="Confirm password"
+          value={userForm.password_confirmation}
+          onChangeText={(text) =>
+            setUserForm({ ...userForm, password_confirmation: text })
+          }
+          secureTextEntry
         />
       </View>
       <Button

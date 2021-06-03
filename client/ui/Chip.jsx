@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-const Chip = ({ style, title, selected, onPress }) => {
+const Chip = ({ style, title = '', selected = false, onPress }) => {
   const [isSelected, setSelected] = useState(selected);
   const handlePress = () => {
     setSelected(!isSelected);
@@ -9,14 +9,12 @@ const Chip = ({ style, title, selected, onPress }) => {
   };
   return (
     <TouchableOpacity
-      style={[
-        styles.container,
-        style && style,
-        { opacity: isSelected ? 1 : 0.4 },
-      ]}
+      style={[styles.container, style && style]}
       onPress={handlePress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <View style={[styles.pill, { opacity: isSelected ? 1 : 0.4 }]}>
+        <Text style={styles.text}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -24,7 +22,8 @@ const Chip = ({ style, title, selected, onPress }) => {
 export default Chip;
 
 const styles = StyleSheet.create({
-  container: {
+  container: {},
+  pill: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 100,

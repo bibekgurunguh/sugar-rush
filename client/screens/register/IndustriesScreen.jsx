@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,19 +12,32 @@ import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import Chip from 'ui/Chip';
 import { getIndustries } from 'services/apiServices';
+import { UserFormContext } from 'contexts/UserFormContext';
 
 const IndustriesScreen = ({ navigation }) => {
+  const [userForm, setUserForm] = useContext(UserFormContext);
   const [industries, setIndustries] = useState([]);
+
   useEffect(() => {
     (async () => {
       const fetchedIndustries = await getIndustries();
       setIndustries(fetchedIndustries);
     })();
-  }, []);
+  }, [userForm]);
 
   const handleProceed = () => {
     navigation.navigate('SubmitScreen');
   };
+
+  const toggleIndustry = (id) => {
+    if (userForm.industries.includes(id))
+      setUserForm({
+        ...userForm,
+        industries: userForm.industries.filter((el) => el !== id),
+      });
+    else setUserForm({ ...userForm, industries: [...userForm.industries, id] });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -43,7 +56,12 @@ const IndustriesScreen = ({ navigation }) => {
           keyExtractor={(item) => item.id}
           data={industries}
           renderItem={({ item }) => (
-            <Chip style={styles.chip} title={item.industry} />
+            <Chip
+              style={styles.chip}
+              title={item.industry}
+              selected={userForm.industries.includes(item.id)}
+              onPress={() => toggleIndustry(item.id)}
+            />
           )}
         />
       </View>

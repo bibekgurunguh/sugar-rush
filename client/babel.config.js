@@ -15,6 +15,7 @@ module.exports = function (api) {
             screens: './screens',
             ui: './ui',
             services: './services',
+            contexts: './contexts',
           },
         },
       ],

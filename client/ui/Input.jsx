@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 
 const Input = ({
   style,
@@ -7,7 +7,8 @@ const Input = ({
   placeholder,
   secureTextEntry,
   multiline,
-  onChange,
+  onChangeText,
+  value,
 }) => {
   return (
     <View style={[styles.container, style && style]}>
@@ -16,8 +17,9 @@ const Input = ({
         style={[styles.textInput, { height: multiline && 100 }]}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
-        onChange={onChange}
+        onChangeText={onChangeText}
         multiline={multiline}
+        value={value}
       />
     </View>
   );

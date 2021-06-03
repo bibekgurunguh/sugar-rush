@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-const Checkbox = ({ style, title = '', value, color = 'black' }) => {
+const Checkbox = ({ style, title = '', value, color = 'black', onChange }) => {
   const [isChecked, setChecked] = useState(value);
   const handleOnChange = () => {
     setChecked(!isChecked);
+    if (onChange) onChange();
   };
   return (
     <TouchableOpacity

@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert } from 'react-native';
 
 import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import Input from 'ui/Input';
 import { Entypo } from '@expo/vector-icons';
+
+import Chip from 'ui/Chip';
 
 const userIcon = () => <Entypo name="user" size={24} color={nice.darkRed} />;
 const passwordIcon = () => (
@@ -35,9 +37,15 @@ const LoginScreen = ({ navigation }) => {
           style={styles.button}
           color={nice.darkBlue}
           shadow
+          onPress={() =>
+            Alert.alert(
+              'Sorry',
+              'Login feature is not available at the moment, please register.'
+            )
+          }
         />
         <View style={styles.line} />
-        <Text style={styles.textWhite}>Already created account?</Text>
+        <Text style={styles.textWhite}>Don't have an account yet?</Text>
         <Button
           title="Register"
           style={styles.button}
@@ -46,6 +54,7 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('RegisterScreen')}
         />
       </View>
+      <Chip title="test" />
     </View>
   );
 };

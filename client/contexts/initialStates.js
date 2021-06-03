@@ -1,0 +1,16 @@
+export const initialUserFormState = {
+  first_name: '',
+  last_name: '',
+  date_of_birth: '',
+  email: '',
+  address_1: '',
+  address_2: '',
+  county: '',
+  country: '',
+  postcode: '',
+  password: '',
+  password_confirmation: '',
+  terms_and_conditions: false,
+  industries: [],
+  experiences: [],
+};

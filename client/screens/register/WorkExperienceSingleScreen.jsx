@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import {
   AntDesign,
   MaterialIcons,
@@ -9,6 +9,8 @@ import {
 import { default as nice } from 'constants/colors';
 import Input from 'ui/Input';
 import Button from 'ui/Button';
+import { UserFormContext } from 'contexts/UserFormContext';
+import { isAnyBlank } from 'services/utils';
 
 const dateIcon = () => (
   <MaterialIcons name="date-range" size={24} color={nice.darkRed} />
@@ -18,8 +20,31 @@ const roleIcon = () => (
 );
 
 const WorkExperienceSingleScreen = ({ navigation }) => {
+  const [userForm, setUserForm] = useContext(UserFormContext);
+
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [role, setRole] = useState('');
+  const [description, setDescription] = useState('');
+
   const handleAdd = () => {
-    navigation.navigate('WorkExperienceScreen');
+    if (isAnyBlank(startDate, endDate, role, description))
+      Alert.alert('Alert', 'Please fill in all the necessary fields.');
+    else {
+      setUserForm({
+        ...userForm,
+        experiences: [
+          ...userForm.experiences,
+          {
+            start_date: startDate,
+            end_date: endDate,
+            role: role,
+            description: description,
+          },
+        ],
+      });
+      navigation.navigate('WorkExperienceScreen');
+    }
   };
   return (
     <View style={styles.container}>
@@ -37,14 +62,30 @@ const WorkExperienceSingleScreen = ({ navigation }) => {
           style={styles.input}
           Icon={dateIcon}
           placeholder="From (dd/mm/yyyy)"
+          value={startDate}
+          onChangeText={(text) => setStartDate(text)}
         />
         <Input
           style={styles.input}
           Icon={dateIcon}
           placeholder="To (dd/mm/yyyy)"
+          value={endDate}
+          onChangeText={(text) => setEndDate(text)}
         />
-        <Input style={styles.input} Icon={roleIcon} placeholder="Role" />
-        <Input style={styles.input} placeholder="Description" multiline />
+        <Input
+          style={styles.input}
+          Icon={roleIcon}
+          placeholder="Role"
+          value={role}
+          onChangeText={(text) => setRole(text)}
+        />
+        <Input
+          style={styles.input}
+          placeholder="Description"
+          multiline
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+        />
       </View>
       <Button
         style={styles.addButton}
