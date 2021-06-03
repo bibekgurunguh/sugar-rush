@@ -5,9 +5,21 @@ import { FontAwesome } from '@expo/vector-icons';
 import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import { UserFormContext } from 'contexts/UserFormContext';
+import { UserContext } from 'contexts/UserContext';
+import { registerUser, getUser } from 'services/apiServices';
 
 const SubmitScreen = ({ navigation }) => {
   const [userForm, setUserForm] = useContext(UserFormContext);
+  const [user, setUser] = useContext(UserContext);
+
+  const handleCreate = async (userDetails) => {
+    try {
+      const loggedUser = await registerUser(userDetails);
+      setUser(loggedUser);
+    } catch (err) {
+      console.log('ERROR: ', err);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -29,6 +41,7 @@ const SubmitScreen = ({ navigation }) => {
         title="Create"
         color={nice.darkBlue}
         shadow
+        onPress={() => handleCreate(userForm)}
       />
     </View>
   );

@@ -13,20 +13,6 @@ export const getIndustries = async () => {
   return industries;
 };
 
-export const registerUser = async (userDetails) => {
-  const fetchedData = await fetch(`${BASE_URL}/register`, {
-    method: 'POST',
-    body: JSON.stringify(userDetails),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => res.data)
-    .catch((err) => console.log('ERROR: ', err));
-  return fetchedData;
-};
-
 export const getUser = async (userKey) => {
   const user = await fetch(`${BASE_URL}/profile`, {
     method: 'GET',
@@ -38,6 +24,23 @@ export const getUser = async (userKey) => {
   })
     .then((res) => res.json())
     .then((res) => res.data)
-    .catch((err) => console.log('ERROR:', err));
+    .catch((err) => console.log('ERROR from getUser:', err));
   return user;
+};
+
+// Posts request to create user account which returns the user_key,
+// which is then immediately used to fetch the user profile without
+// saving the user_key locally.
+export const registerUser = async (userDetails) => {
+  const fetchedData = await fetch(`${BASE_URL}/register`, {
+    method: 'POST',
+    body: JSON.stringify(userDetails),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => getUser(res.data.user_token))
+    .catch((err) => console.log('ERROR from registerUser: ', err));
+  return fetchedData;
 };

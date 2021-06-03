@@ -14,3 +14,23 @@ export const initialUserFormState = {
   industries: [],
   experiences: [],
 };
+
+export const initialUserState = {
+  user: {
+    id: null,
+    first_name: '',
+    last_name: '',
+    date_of_birth: '',
+    address_1: '',
+    address_2: '',
+    county: '',
+    country: '',
+    postcode: '',
+    email: '',
+    token: '',
+    created_at: '',
+    updated_at: '',
+  },
+  experiences: [],
+  industries: [],
+};
