@@ -1,6 +1,16 @@
 <h1>Sugar Rush Creative Tech Test </h1>
 
-<!-- <h2>Screenshots</h2> -->
+<h2>Screenshots</h2>
+<div>
+  <img src="./assets/screenshot1.jpg" alt="screenshot1" width="260" />
+  <img src="./assets/screenshot2.jpg" alt="screenshot2" width="260" />
+  <img src="./assets/screenshot3.jpg" alt="screenshot3" width="260" />
+  <img src="./assets/screenshot4.jpg" alt="screenshot4" width="260" />
+  <img src="./assets/screenshot5.jpg" alt="screenshot5" width="260" />
+  <img src="./assets/screenshot6.jpg" alt="screenshot6" width="260" />
+  <img src="./assets/screenshot7.jpg" alt="screenshot7" width="260" />
+  <img src="./assets/screenshot8.jpg" alt="screenshot8" width="260" />
+</div>
 
 <h2>Getting started</h2>
 
