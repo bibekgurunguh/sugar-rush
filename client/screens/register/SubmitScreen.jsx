@@ -1,21 +1,24 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store';
 
 import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import { UserFormContext } from 'contexts/UserFormContext';
 import { UserContext } from 'contexts/UserContext';
-import { registerUser, getUser } from 'services/apiServices';
+import { registerUser } from 'services/apiServices';
 
 const SubmitScreen = ({ navigation }) => {
-  const [userForm, setUserForm] = useContext(UserFormContext);
+  const [userForm] = useContext(UserFormContext);
   const [user, setUser] = useContext(UserContext);
 
   const handleCreate = async (userDetails) => {
     try {
       const loggedUser = await registerUser(userDetails);
       setUser(loggedUser);
+      await SecureStore.setItemAsync('user', JSON.stringify(loggedUser));
+      navigation.navigate('ProfileScreen');
     } catch (err) {
       console.log('ERROR: ', err);
     }

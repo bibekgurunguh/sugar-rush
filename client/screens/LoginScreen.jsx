@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store';
 
 import { default as nice } from 'constants/colors';
 import Button from 'ui/Button';
 import Input from 'ui/Input';
-import { Entypo } from '@expo/vector-icons';
+import { UserContext } from 'contexts/UserContext';
 
 const userIcon = () => <Entypo name="user" size={24} color={nice.darkRed} />;
 const passwordIcon = () => (
@@ -12,6 +14,23 @@ const passwordIcon = () => (
 );
 
 const LoginScreen = ({ navigation }) => {
+  const [user, setUser] = useContext(UserContext);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let loggedUser = await SecureStore.getItemAsync('user');
+        if (loggedUser !== null) {
+          setUser(JSON.parse(loggedUser));
+          console.log('logged User from login', JSON.parse(loggedUser));
+          navigation.navigate('ProfileScreen');
+        }
+      } catch (err) {
+        console.log('Error from LoginScreen: ', err);
+      }
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image

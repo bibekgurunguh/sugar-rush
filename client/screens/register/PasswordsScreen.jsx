@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
@@ -14,10 +14,6 @@ const passwordIcon = () => (
 
 const PasswordsScreen = ({ navigation }) => {
   const [userForm, setUserForm] = useContext(UserFormContext);
-
-  useEffect(() => {
-    console.log('Form Data: ', userForm);
-  });
 
   const handleProceed = () => {
     if (isAnyBlank(userForm.password, userForm.password_confirmation))

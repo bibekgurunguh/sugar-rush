@@ -40,7 +40,8 @@ export const registerUser = async (userDetails) => {
     },
   })
     .then((res) => res.json())
-    .then((res) => getUser(res.data.user_token))
+    .then((res) => res.data)
+    .then((res) => getUser(res.user_token))
     .catch((err) => console.log('ERROR from registerUser: ', err));
   return fetchedData;
 };

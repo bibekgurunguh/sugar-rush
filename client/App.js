@@ -77,6 +77,11 @@ export default function App() {
             component={RegisterScreen}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
