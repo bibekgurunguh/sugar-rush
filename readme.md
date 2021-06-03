@@ -12,11 +12,10 @@ Follow these instructions to build the app.
 4. Start the App in terminal `yarn start`
 5. Launch the App on your `Device` or `Emulator/Simulator` using `Expo Go` App
 
-<br/>
+
 > <h2> Notes </h2>
 > When entering fields make sure to use a valid email address.
 
-<br/>
 
 <h2>Tech Stack</h2>
 - Javascript
